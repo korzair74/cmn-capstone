@@ -7,8 +7,8 @@ const logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const tamingStatsRouter = require("./routes/tamingStats");
+const breedingStatsRouter = require("./routes/breedingStats");
 const port = process.env.PORT || "5000";
 
 const app = express();
@@ -32,13 +32,13 @@ mongoose.connect(uri, {
   useCreateIndex: true,
   useUnifiedTopology: true,
 });
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-});
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Connected to Database"));
+
+app.use("/tamingStats", tamingStatsRouter);
+app.use("/breedingStats", breedingStatsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
