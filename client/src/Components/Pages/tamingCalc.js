@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import "../Style/App.css";
+
 export default function TamingCalc() {
   useEffect(() => {
     fetchTamingStats();
@@ -17,7 +19,7 @@ export default function TamingCalc() {
   return (
     <div className='tamingCalc-container'>
       <div className='calc-wrapper'>
-        <div className='calc-details-wrapper'>
+        <div className='calc-form-wrapper'>
           <form>
             <select name='creature' className='select-element'>
               {tamingStats.map((stat) => (
@@ -26,22 +28,44 @@ export default function TamingCalc() {
                 </option>
               ))}
             </select>
-            <li>Creature</li>
-            <li>Level</li>
-            <li>Taming Method</li>
-            <li>Taming Multiplier</li>
-            <li>Consumption Multiplier</li>
+            <input
+              type='text'
+              className='form-imput'
+              placeholder='Creature Level'
+            />
+            <input
+              type='radio'
+              value='Standard'
+              name='method'
+              className='radio-element'
+            />
+            <label for='method'>Standard</label>
+            <input
+              type='radio'
+              value='Starve'
+              name='method'
+              className='radio-element'
+            />
+            <label for='method'>Starve</label>
+            <input
+              type='text'
+              className='form-input'
+              placeholder='Taming Multiplier'
+            />
+            <input
+              type='text'
+              className='form-input'
+              placeholder='Consumption Multiplier'
+            />
           </form>
 
-          <div className='calc-details-wrapper'>
-            <ul>
-              <li>Food</li>
-              <li>Mejoberry</li>
-              <li>mixed berries</li>
-              <li>crops</li>
-              <li>kibble</li>
-            </ul>
-          </div>
+          <ul>
+            <li>Food</li>
+            <li>Mejoberry</li>
+            <li>mixed berries</li>
+            <li>crops</li>
+            <li>kibble</li>
+          </ul>
         </div>
       </div>
     </div>
