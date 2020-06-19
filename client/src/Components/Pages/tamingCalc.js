@@ -15,75 +15,80 @@ export default function TamingCalc() {
   };
 
   return (
-    <div className='taming-calc-container'>
-      <div className='taming-comp-wrapper'>
-        <div className='taming-components'>
-          <div className='calc-wrapper'>
-            <div className='calc-form-wrapper'>
-              <form>
+    <form>
+      <div className='taming-calc-container'>
+        <div className='taming-comp-wrapper'>
+          <div className='taming-components'>
+            <div className='calc-wrapper'>
+              <div className='calc-form-wrapper'>
                 <div>
-                  <label className='form-label' for='creature'>
-                    Creature:
-                  </label>
-                  <select name='creature' className='select-element'>
-                    {tamingStats.map((stat) => (
-                      <option key={stat.id} value={stat.creature}>
-                        {stat.creature}
-                      </option>
-                    ))}
-                  </select>
-                  <label className='form-label'>Creature Level:</label>
-                  <input
-                    name='level-label'
-                    type='text'
-                    className='form-input'
-                    placeholder='Creature Level'
-                  />
+                  <h5>
+                    Creature:&emsp;
+                    <select name='creature' className='select-element'>
+                      {tamingStats.map((stat) => (
+                        <option
+                          className='select-option'
+                          key={stat.id}
+                          value={stat.creature}>
+                          {stat.creature}
+                        </option>
+                      ))}
+                    </select>
+                  </h5>
                 </div>
                 <div>
-                  <input
-                    type='radio'
-                    value='Standard'
-                    name='method'
-                    className='radio-element'
-                  />
-                  <label className='form-label' for='method'>
-                    Standard
-                  </label>
-                  <input
-                    type='radio'
-                    value='Starve'
-                    name='method'
-                    className='radio-element'
-                  />
-                  <label for='method'>Starve</label>
+                  <h5>
+                    Creature Level:&emsp;
+                    <input
+                      type='number'
+                      className='select-number'
+                      defaultValue='1'
+                    />
+                  </h5>
                 </div>
-                <input
-                  type='text'
-                  className='form-input'
-                  placeholder='Taming Multiplier'
-                />
-                <input
-                  type='text'
-                  className='form-input'
-                  placeholder='Consumption Multiplier'
-                />
-              </form>
-              <div className='food-wrapper'>
-                <div className='food-form-wrapper'>
-                  <ul>
-                    <li>Food</li>
-                    <li>Mejoberry</li>
-                    <li>mixed berries</li>
-                    <li>crops</li>
-                    <li>kibble</li>
-                  </ul>
+                {/* <div>
+                  <h5>
+                    <input
+                      type='radio'
+                      value='Standard'
+                      name='method'
+                      className='radio-element'
+                    />
+                    <label for='method'>Standard</label>
+                    <input
+                      type='radio'
+                      value='Starve'
+                      name='method'
+                      className='radio-element'
+                    />
+                    <label for='method'>Starve</label>
+                  </h5>
+                </div> */}
+                <div>
+                  <h5>
+                    Taming Multiplier:&emsp;
+                    <input
+                      type='number'
+                      defaultValue='1'
+                      className='select-number'
+                    />
+                  </h5>
+                </div>
+                <div>
+                  <h5>
+                    Consumption Multiplier:&emsp;
+                    <input
+                      type='number'
+                      defaultValue='1'
+                      className='select-number'
+                    />
+                  </h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

@@ -1,5 +1,6 @@
 .navbar-container {
   background-color: #003510;
+  border-bottom: 3px solid white;
 }
 .navbar-wrapper {
   display: flex;
@@ -22,7 +23,7 @@
     &:hover {
       color: #ff9339;
       transition: 0.5s ease-in-out;
-      border-bottom: 1px solid #ff9339;
+      border-bottom: 1px solid white;
     }
   }
 
@@ -51,7 +52,7 @@
       }
       &:hover {
         color: #ff9339;
-        border-bottom: 1px solid #ff9339;
+        border-bottom: 1px solid white;
       }
     }
   }
