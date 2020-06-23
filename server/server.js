@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 
 const tamingStatsRouter = require("./routes/tamingStats");
 const breedingStatsRouter = require("./routes/breedingStats");
+const arkdataRouter = require("./routes/arkdata");
 const port = process.env.PORT || "5000";
 
 const app = express();
@@ -39,6 +40,7 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use("/tamingStats", tamingStatsRouter);
 app.use("/breedingStats", breedingStatsRouter);
+app.use("/arkdata", arkdataRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -14,6 +14,21 @@ export default function TamingCalc() {
     console.log(tamingStats);
   };
 
+  const headings = ["Food Type", "Qty", "Time"];
+  const rows = [
+    "Kibble",
+    "Crops",
+    "Mejoberry",
+    "Berries",
+    "Raw Mutton",
+    "Raw Prime Meat",
+    "Cooked Lamb Chop",
+    "Cooked Prime Meat",
+    "Raw Prime Fish Meat",
+    "Raw Meat",
+    "Cooked Meat",
+  ];
+
   return (
     <form>
       <div className='taming-calc-container'>
@@ -85,6 +100,9 @@ export default function TamingCalc() {
                   </h5>
                 </div>
               </div>
+            </div>
+            <div className='food-details-wrapper'>
+              <table></table>
             </div>
           </div>
         </div>
