@@ -23,22 +23,6 @@ export default function TamingCalc() {
     // call your switch statement and pass the level
     console.log("level changed!");
   }, [level]);
-  // levelSelector = () => {
-  //   switch ({ level }) {
-  //     case { level } < 30:
-  //       return `${stat.levelOne}`;
-  //     case { level } < 60:
-  //       return `${stat.levelThirty}`;
-  //     case { level } < 90:
-  //       return `${stat.levelSixty}`;
-  //     case { level } < 120:
-  //       return `${stat.levelNinety}`;
-  //     case { level } < 150:
-  //       return `${stat.levelOneHundredTwenty}`;
-  //     case { level } >= 150:
-  //       return `${stat.levelOneHundredFifty}`;
-  //   }
-  // };
 
   return (
     <form>
@@ -99,9 +83,10 @@ export default function TamingCalc() {
           </div>
 
           <div className='details-wrapper'>
-            {creatureDetails.map((creatureDetail) => {
-              return <CreatureDetails creatureDetail={creatureDetail} />;
-            })}
+            <CreatureDetails
+              key={creatureDetails.index}
+              creatureDetails={creatureDetails}
+            />
           </div>
         </div>
       </div>

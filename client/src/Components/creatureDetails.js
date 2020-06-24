@@ -1,50 +1,52 @@
 import React from "react";
 
 export default function CreatureDetails(props) {
+  const details = props.creatureDetails;
+
+  const renderHeader = () => {
+    const headerElements = [
+      "Food Type",
+      "Food Qty",
+      "Narco Berries",
+      "Narcotics",
+      "Bio Toxin",
+      "Time",
+    ];
+    return headerElements.map((element, index) => {
+      return <th key={index}>{element}</th>;
+    });
+  };
+
+  const renderBody = () => {
+    return details.map(
+      ({
+        index,
+        food_type,
+        food_qty,
+        narcoBerries,
+        narcotics,
+        biotoxin,
+        time,
+      }) => {
+        return (
+          <tr key={index}>
+            <td>{food_type}</td>
+            <td>{food_qty}</td>
+            <td>{narcoBerries}</td>
+            <td>{narcotics}</td>
+            <td>{biotoxin}</td>
+            <td>{time}</td>
+          </tr>
+        );
+      }
+    );
+  };
   return (
     <div>
-      <h1>Hello from CreatureDetails</h1>
+      <table className='details-table'>
+        <thead>{renderHeader()}</thead>
+        <tbody>{renderBody()}</tbody>
+      </table>
     </div>
   );
-}
-
-{
-  /* <div className='detail-wrapper'>
-<div>
-  <h5>
-    Food Type:&emsp;
-    {}
-  </h5>
-</div>
-<div>
-  <h5>
-    Creature Level:&emsp;
-    <input
-      type='number'
-      className='select-number'
-      defaultValue='1'
-    />
-  </h5>
-</div>
-<div>
-  <h5>
-    Taming Multiplier:&emsp;
-    <input
-      type='number'
-      defaultValue='1'
-      className='select-number'
-    />
-  </h5>
-</div>
-<div>
-  <h5>
-    Consumption Multiplier:&emsp;
-    <input
-      type='number'
-      defaultValue='1'
-      className='select-number'
-    />
-  </h5>
-</div>
-</div> */
 }
