@@ -7,7 +7,7 @@ export default function TamingCalc() {
   }, []);
 
   const [arkData, setArkData] = useState([]);
-  const [creature, setCreature] = useState("Argentavis");
+  const [creature, setCreature] = useState([]);
   const [level, setLevel] = useState("1");
   const [creatureDetails, setCreatureDetails] = useState([]);
 
@@ -16,13 +16,18 @@ export default function TamingCalc() {
     const arkData = await data.json();
     console.log(arkData);
     setArkData(arkData);
+    setCreature(arkData[0].name);
     setCreatureDetails(arkData[0].levelOne);
   };
 
-  useEffect(() => {
-    // call your switch statement and pass the level
-    console.log("level changed!");
-  }, [level]);
+  useEffect(
+    () => {
+      // call your switch statement and pass the level
+      console.log("level changed!");
+    },
+    [level],
+    [creature]
+  );
 
   return (
     <form>
