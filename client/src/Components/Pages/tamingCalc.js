@@ -12,7 +12,7 @@ export default function TamingCalc() {
   const [level, setLevel] = useState("1");
   const [creatureDetails, setCreatureDetails] = useState([]);
   const fetchArkData = async () => {
-    const data = await fetch("http://localhost:5000/arkdata");
+    const data = await fetch("https://cmn-capstone.herokuapp.com/arkdata");
     const arkData = await data.json();
     setArkData(arkData);
     setCreatureName(arkData[0].name);
