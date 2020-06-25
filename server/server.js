@@ -58,5 +58,5 @@ app.use(function (err, req, res, next) {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-app.listen(PORT, console.log(`Express server is running on ${PORT}`));
+app.listen(port, console.log(`Express server is running on ${port}`));
 module.exports = app;
