@@ -57,7 +57,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-app.listen(5000, () =>
-  console.log("Express server is running on localhost:5000")
-);
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+app.listen(PORT, () => console.log(`Express server is running on ${PORT}`));
 module.exports = app;
