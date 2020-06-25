@@ -14,8 +14,6 @@ const port = process.env.PORT || "5000";
 
 const app = express();
 
-app.set("port", port);
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -60,5 +58,5 @@ app.use(function (err, req, res, next) {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-app.listen(PORT, () => console.log(`Express server is running on ${PORT}`));
+app.listen(PORT, console.log(`Express server is running on ${PORT}`));
 module.exports = app;
