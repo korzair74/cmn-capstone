@@ -1,49 +1,71 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import CreatureDetails from "../creatureDetails";
-
 export default function TamingCalc() {
   useEffect(() => {
     fetchArkData();
   }, []);
-
   const [arkData, setArkData] = useState([]);
-  const [creature, setCreature] = useState([]);
+  const [creatureName, setCreatureName] = useState("");
   const [level, setLevel] = useState("1");
   const [creatureDetails, setCreatureDetails] = useState([]);
-  const stateRef = useRef(level);
-
   const fetchArkData = async () => {
     const data = await fetch("http://localhost:5000/arkdata");
     const arkData = await data.json();
     setArkData(arkData);
-    setCreature(arkData[0].name);
+    setCreatureName(arkData[0].name);
     setCreatureDetails(arkData[0].levelOne);
   };
-
-  const dataSelector = () => {
-    // console.log(stateRef.current);
-    if (Number(level) < 30) {
-      console.log("this is arkData", arkData);
-      // setCreatureDetails(arkData[0].levelOne);
-      console.log("creature details", creatureDetails);
-    } else if (Number(level) < 60) {
+  const dataSelector = (currentLevel) => {
+    if (Number(currentLevel) < 30) {
+      console.log("ark data", arkData);
+      console.log("currentLevel", currentLevel);
+      console.log("creaturedetails", creatureDetails);
+      filterCreatureCurrentLevel("levelOne");
+    } else if (Number(currentLevel) < 60) {
+      filterCreatureCurrentLevel("levelThirty");
       console.log("60");
-    } else if (Number(level) < 90) {
+    } else if (Number(currentLevel) < 90) {
+      filterCreatureCurrentLevel("levelSixty");
       console.log("90");
-    } else if (Number(level) < 120) {
+    } else if (Number(currentLevel) < 120) {
+      filterCreatureCurrentLevel("levelNinety");
       console.log("120");
-    } else if (Number(level) < 150) {
+    } else if (Number(currentLevel) < 150) {
+      filterCreatureCurrentLevel("levelONeHundredTwenty");
+      console.log("ark data", arkData);
+      console.log("currentLevel", currentLevel);
+      console.log("creaturedetails", creatureDetails);
       console.log("150");
     } else {
+      filterCreatureCurrentLevel("levelOneHundredFifty");
       console.log("everything else");
     }
   };
-
-  useEffect(() => {
-    dataSelector();
-    console.log("use effect data selector");
-  }, [level, creature]);
-
+  const filterCreatureCurrentLevel = (whichLevel) => {
+    arkData.forEach((data) => {
+      if (data.name === creatureName) {
+        setCreatureDetails(data[whichLevel]);
+      }
+    });
+  };
+  const handleLevelSelectorChange = (e) => {
+    console.log("yay!");
+    setLevel(e.target.value);
+    dataSelector(e.target.value);
+  };
+  const handleSetCreatureChange = (e) => {
+    setCreatureName(e.target.value);
+    setLevel("1");
+    arkData.forEach((data) => {
+      if (data.name === e.target.value) {
+        setCreatureDetails(data.levelOne);
+      }
+    });
+  };
+  // useEffect(() => {
+  //   dataSelector();
+  //   console.log("use effect data selector");
+  // }, [level, creature]);
   return (
     <form>
       <div className='taming-calc-container'>
@@ -56,7 +78,7 @@ export default function TamingCalc() {
                   <select
                     name='creature'
                     className='select-element'
-                    onChange={(e) => setCreature(e.target.value)}>
+                    onChange={handleSetCreatureChange}>
                     {arkData.map((stat) => (
                       <option
                         className='select-option'
@@ -74,7 +96,7 @@ export default function TamingCalc() {
                   <input
                     type='number'
                     className='select-number'
-                    onChange={(e) => setLevel(e.target.value)}
+                    onChange={handleLevelSelectorChange}
                     value={level}
                   />
                 </h5>
@@ -101,7 +123,6 @@ export default function TamingCalc() {
               </div>
             </div>
           </div>
-
           <div className='details-wrapper'>
             <CreatureDetails
               key={creatureDetails.index}
