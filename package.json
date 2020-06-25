@@ -7,9 +7,9 @@
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "start": "concurrently -k --kill-others \"npm run server\" \"npm run client\"",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "build": "concurrently \"cd client && npm run build\" \"cd server && npm run build\"",
+    "install-client": "concurrently \"cd client && npm install\" \"cd server && npm install\"",
+    "heroku-postbuild": "concurrently \"npm run install-client && npm run build\" \"npm run install-server && npm run build\""
   },
   "keywords": [],
   "author": "Chris Nickel <chris.nickel.dev@gmail.com> (https://github.com/korzair74)",
