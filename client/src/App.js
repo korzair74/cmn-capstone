@@ -13,6 +13,7 @@ function App() {
         <Switch>
           <Route path='/tamingcalc' component={TamingCalc} />
         </Switch>
+        <TamingCalc />
       </div>
     </Router>
   );
